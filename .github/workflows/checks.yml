@@ -43,8 +43,9 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
-      - name: Install Android SDK components
-        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+      - uses: android-actions/setup-android@40fd30fb8d7440372e1316f5d1809ec01dcd3699 # v4.0.1
+        with:
+          packages: 'platforms;android-36 build-tools;35.0.0'
       - name: Run Android checks with a separate application ID
         working-directory: android
         run: ./gradlew --no-daemon --console=plain -ProadvoiceApplicationId=com.example.roadvoice.ci testDebugUnitTest assembleDebug lintDebug
