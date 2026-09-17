@@ -24,6 +24,18 @@ completed with no errors and 15 warnings. The Gradle wrapper JAR matched its
 official published SHA-256 checksum. No live API sessions were needed for these
 publication checks.
 
+## Checks on pull requests
+
+GitHub Actions runs the fake-upstream broker tests and the Android debug build,
+unit tests, and lint on pull requests and updates to `main`. Android checks use
+JDK 17, SDK 36, the pinned Gradle wrapper, and a separate example application ID.
+The workflow uses read-only repository permissions and actions pinned to commit
+hashes. It does not deploy a Worker, sign a Play release, run device instrumentation,
+or use OpenAI credentials. Passing these checks does not establish compatibility
+with a physical phone or car.
+
+## Session lifecycle validation
+
 The 0.4.1 lifecycle fix cancels status-listener tasks when Core-Telecom invokes
 the remote-disconnect callback. Previously those tasks could outlive the call
 and leave the app stuck on “Ending conversation.” Repeated End can also cancel
