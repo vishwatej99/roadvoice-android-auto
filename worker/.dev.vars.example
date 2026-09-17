@@ -1,0 +1,5 @@
+# Local development only. Production values belong in Cloudflare secret bindings.
+OPENAI_API_KEY=
+ROADVOICE_CLIENT_TOKEN=
+# Generate a separate random client token locally:
+# node -e "console.log(require('node:crypto').randomBytes(32).toString('base64url'))"
